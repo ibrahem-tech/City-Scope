@@ -30,6 +30,41 @@ userController.register = async (req, res, next) => {
     }
   
   };
+userController.login = async (req, res, next) => {
+  //Username, password in erquest
+  const {email, password} = req.body;
+  //check username and password are ok
+  try{
+      const user = await User.findOne({ email });
+      if(!user){
+          const err = new console.error('Yhe email ${email} was not found i our system');
+          err.status = 401;
+          next(err);   
+      }
+      
+      user.isPasswordMatch(password, user.password, (err, matched) => {
+          if (matched){
+              //If credi ok, then create JRT and return
+              return res.send({message: "Login was successful"});
+
+          }
+
+          res.status(401).send({
+              error: 'Invalid email or password'
+          })
+
+
+      });
+
+  }catch(e){
+      next(e);
+  }
+  
+
+
+
+};
+
 
  
 
