@@ -1,5 +1,5 @@
+const jwt = require('jsonwebtoken');
 const user = require('../models/user.model')
-
 const { use } = require("../app");
 const User = require('../models/user.model');
 
@@ -45,7 +45,16 @@ userController.login = async (req, res, next) => {
       user.isPasswordMatch(password, user.password, (err, matched) => {
           if (matched){
               //If credi ok, then create JRT and return
-              return res.send({message: "Login was successful"});
+              //Secret
+              //Expiration
+
+            const secret = process.env.JWT_SECRET;
+            const expire = process.env. JWT_EXPIRATION
+
+            const token = jwt.sign({_id: user._id}, secret, {expiresIn: expire})
+           return res.send({token});
+
+
 
           }
 
