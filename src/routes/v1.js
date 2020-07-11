@@ -3,19 +3,17 @@ const router = express.Router();
 const passport = require('passport');
 
 const userController = require('../controllers/users.controller');
-const { route } = require('../app');
 
-//Auth and sign up 
-
-router.post('/register', userController.register);
+// Auth and Sign Up
+router.post('/register', userController.regisetr);
 router.post('/auth', userController.login);
 
-//customize and protect the routes
-router.all('*',(req, res, next) => {
-    passport.authenticate('jwt', {session: false}, (err,user) => {
-        if(err || !user){
-            const error = new Error('You are not authorized to acsess this area');
-            error.stasus = 401;
+// Customize auth message Protect the  routes
+router.all('*', (req, res, next) => {
+    passport.authenticate('jwt', { session: false }, (err, user) => {
+        if (err || !user) {
+            const error = new Error('You are not authorized to access this area');
+            error.status = 401;
             throw error;
         }
 
@@ -23,18 +21,9 @@ router.all('*',(req, res, next) => {
         req.user = user;
         return next();
     })(req, res, next);
-
-
 });
 
-router.get(
-    '/expence',
-(req, res,next) => {
+// -------------- Protected Routes -------------- //
+router.get('/me', userController.me);
 
-    return res.send({
-        mesaage: 'hi, you are authenticated',
-    user: req.user
-    });
-}
-);
 module.exports = router;
