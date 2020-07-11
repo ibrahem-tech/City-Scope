@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import { Button, FormGroup,FormFeedback, Label, Input, Alert} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { connect} from 'react-redux';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
- class Login extends Component{
+import {signIn} from '../actions'
+
+
+ class LoginPage extends Component{
      _handleFormSubmit(values){
-         console.log(values)
+       this.props.signIn(values)
      }
     render() {
         return(
@@ -85,5 +89,17 @@ import * as Yup from 'yup';
     }
 
 }
-
+const mapStateToProps = ({ auth }) => {
+    return {
+        attempting: auth.attempting,
+      error: auth.error,
+      isAuth: auth.isAuth
+    };
+  };
+  
+  const Login = connect(
+    mapStateToProps,
+    { signIn }
+  )(LoginPage);
+  
 export {Login};
