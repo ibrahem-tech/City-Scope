@@ -1,20 +1,83 @@
 import React, {Component} from 'react';
-import { Button, FormGroup, Label, Input} from 'reactstrap';
-class Login extends Component{
+import { Button, FormGroup,FormFeedback, Label, Input, Alert} from 'reactstrap';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+
+ class Login extends Component{
+     _handleFormSubmit(values){
+         console.log(values)
+     }
     render() {
         return(
             <div style= {{padding: 20}}>
                 <h3> Sign in to your account</h3>
                 <hr/>
-                <FormGroup>
+                <Formik
+                initialValues={{email: '', password: ''}}
+                onSubmit = {this._handleFormSubmit.bind(this)}
+                validationSchema={Yup.object().shape({
+                    email: Yup.string()
+                      .email()
+                      .required(),
+                    password: Yup.string()
+                      .min(8)
+                      .required()
+                    })}
+ 
+                render={({
+                    handleChange,
+                    handleSubmit,
+                    isValid,
+                    isSubmitting,
+                    handleBlur,
+                    errors,
+                    touched,
+
+                }) => (
+                    <div>
+                  <FormGroup >
                     <Label>Email</Label>
-                    <Input name='email' type='email' placeholder='someone@example.com'/>
+                    <Input 
+                      invalid={errors.email && touched.email}
+                    name='email'
+                     type='email' 
+                     placeholder='someone@example.com'
+                     onChange={handleChange}
+                     onBlur={handleBlur}
+                     />
+                     
+                  {errors.email && touched.email ? (
+                  <FormFeedback>{errors.email}</FormFeedback>
+                ) : null}   
                 </FormGroup>
                 <FormGroup>
                     <Label>Password</Label>
-                    <Input name='password' type='password' placeholder='Enter Your Password'/>
+                    <Input 
+                    invalid={errors.password && touched.password}
+
+                    name='password' 
+                    type='password' 
+                    placeholder='Enter Your Password'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    />
+                     {errors.password && touched.password ? (
+                  <FormFeedback>{errors.password}</FormFeedback>
+                ) : null}
                 </FormGroup>
-                <Button color= 'primary' block>Sign In</Button>
+                <Button
+                color='primary'
+                block
+                onClick={handleSubmit}
+                disabled={!isValid || isSubmitting}
+              >
+                Sign In
+              </Button>
+                    </div>
+                )}
+                />
+
+               
             </div>
         )
     }
