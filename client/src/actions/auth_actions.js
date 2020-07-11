@@ -1,18 +1,29 @@
 import {AUTH_ATTEMPTING, AUTH_SUCCESS, AUTH_FAILED} from './types';
-import axios from 'axios';
+import {apiLogin} from '../api/user';
 
-
-
+const TOKEN_NAME = 'city_scope_token'
 
 export const signIn = request_data => {
     return async dispatch => {
+        dispatch({type: AUTH_ATTEMPTING});
         try {
-           const {data} = await axios.post('http://localhost:3006/api/v1/auth', request_data)
-           console.log(data)
+           const {data: { token } } = await  apiLogin (request_data)
+           dispatch(success(token))
 
         }catch(e){
-           console.error(e.response.data)
+            
+         const {response: {data}} =e;
+         dispatch(error(data.error))
 
         }
     }
-}
+};
+
+const success = token => {
+    localStorage.setItem(TOKEN_NAME, token);
+    return { type: AUTH_SUCCESS };
+  };
+  const error = error => {
+    return { type: AUTH_FAILED, payload: error };
+  };
+  
