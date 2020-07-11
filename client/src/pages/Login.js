@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Button, FormGroup,FormFeedback, Label, Input, Alert} from 'reactstrap';
+import {Link} from 'react-router-dom';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
@@ -76,6 +77,7 @@ import * as Yup from 'yup';
                     </div>
                 )}
                 />
+                <Link to= '/signup'>Do not have an account? Sign Up Now</Link>
 
                
             </div>
