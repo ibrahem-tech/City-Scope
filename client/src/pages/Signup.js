@@ -8,7 +8,7 @@ class Signup extends Component {
 
   _handleFormSubmit(values, bag) {
     this.props.signUp(values);
-    this.bag = bag;
+
   }
 
   render() {
