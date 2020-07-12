@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { signIn } from '../actions';
+import { signIn } from '../actions/auth_actions';
 
 class LoginPage extends Component {
   componentDidUpdate() {
@@ -73,7 +73,7 @@ class LoginPage extends Component {
                   invalid={errors.email && touched.email}
                   name='email'
                   type='email'
-                  placeholder='someone@abolkog.com'
+                  placeholder='someone@something.com'
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
