@@ -1,14 +1,33 @@
-import React, {Component} from 'react';
-import { Button, FormGroup,FormFeedback, Label, Input, Alert} from 'reactstrap';
-import {Link} from 'react-router-dom';
-import {Formik} from 'formik';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  FormFeedback,
+  Alert,
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { signUp } from '../actions/auth_actions';
 
-class Signup extends Component {
+class SignupPage extends Component {
+  componentDidUpdate() {
+    const { error, signedUp } = this.props;
+    if (error && this.bag) {
+      this.bag.setSubmitting(false);
+    }
+
+    if (signedUp) {
+      this.props.history.push('/login');
+    }
+  }
 
   _handleFormSubmit(values, bag) {
     this.props.signUp(values);
-
+    this.bag = bag;
   }
 
   render() {
@@ -101,4 +120,15 @@ class Signup extends Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return {
+    error: auth.error,
+    signedUp: auth.signedUp,
+  };
+};
+
+const Signup = connect(
+  mapStateToProps,
+  { signUp }
+)(SignupPage);
 export { Signup };
