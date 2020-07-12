@@ -8,8 +8,7 @@ import {
 import { apiLogin, apitFetchProfile, apiSignUp } from '../api/user';
 import setAuthHeader from '../api/setAuthHeader';
 
-
-const TOKEN_NAME = 'city_scope_token'
+const TOKEN_NAME = 'expense_app_token';
 
 export const signUp = request_data => {
   return async dispatch => {
@@ -73,7 +72,6 @@ export const getUserProfile = () => {
   };
 };
 
-
 export const logUserOut = () => {
   localStorage.clear();
   setAuthHeader(null);
@@ -81,10 +79,9 @@ export const logUserOut = () => {
 };
 
 const success = token => {
-    localStorage.setItem(TOKEN_NAME, token);
-    return { type: AUTH_SUCCESS };
-  };
-  const error = error => {
-    return { type: AUTH_FAILED, payload: error };
-  };
-  
+  localStorage.setItem(TOKEN_NAME, token);
+  return { type: AUTH_SUCCESS };
+};
+const error = error => {
+  return { type: AUTH_FAILED, payload: error };
+};

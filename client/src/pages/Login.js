@@ -73,7 +73,7 @@ class LoginPage extends Component {
                   invalid={errors.email && touched.email}
                   name='email'
                   type='email'
-                  placeholder='someone@something.com'
+                  placeholder='someone@abolkog.com'
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
