@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import { Container } from 'reactstrap';
-import {Home, Login, Signup} from './pages/index'
+import {Home, Login, Signup} from './pages'
 import {NavBar} from './components'
 
 
