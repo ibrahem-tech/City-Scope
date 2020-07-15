@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/api";
+import API from "../api/api";
 
 class Sym extends Component {
 
@@ -69,8 +69,9 @@ return (
     
     }
 
-    <h1>Get your diagnosis button: </h1>
-    <button 
+    <h1>Get your diagnosis  </h1>
+    <button class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2  border rounded-full"
+           
     onClick={() => this.handleDiagn(this.state.diagnosis)}
     >
         Search
@@ -89,4 +90,4 @@ return (
 
 
 }
-export default Sym;
+export {Sym};
