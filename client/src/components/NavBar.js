@@ -71,8 +71,16 @@ class NavBarComponent extends Component {
         <Link style={{ color: '#fff' }} to="/login">
           Login
         </Link>
+        <hr/>
+        <Link style={{ color: '#fff' }} to="/symptomes">
+        Symptomes
+        </Link>
       </NavItem>
+      
     );
+
+
+    
   }
 
   render() {
