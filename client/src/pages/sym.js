@@ -58,7 +58,7 @@ return (
     {
  this.state.symp.map(symptom =>
     
-    <button 
+    <button class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2  border rounded-full"
     key={symptom.ID}
     onClick={() => this.handleClick(symptom.ID) }
     >
@@ -69,7 +69,7 @@ return (
     
     }
 
-    <h1>Get your diagnosis  </h1>
+    <h1 className="mt-6 text-2xl font-bold text-gray-900 leading-tight sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl"> Get your diagnosis  </h1>
     <button class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2  border rounded-full"
            
     onClick={() => this.handleDiagn(this.state.diagnosis)}
@@ -78,7 +78,14 @@ return (
     
     </button>
 
-    <h1> Get your issue info:</h1>
+    <h1 className="mt-6 text-2xl font-bold text-gray-900 leading-tight sm:mt-8 sm:text-4xl lg:text-3xl xl:text-4xl"> Get your issue info</h1>
+    <button class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2  border rounded-full"
+           
+    onClick={() => this.handleDiagn(this.state.diagnosis)}
+    >
+        Search
+    
+    </button>
     <h2>{this.state.issue.Name}</h2>
     <p>{this.state.issue.DescriptionShort}</p>
     <p>{this.state.issue.MedicalCondition}</p>
