@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../src/tailwind.css';
 
+
 //className="mt-6 rounded-lg shadow-xl sm:mt-8 sm:h-64 sm:w-full sm:object-cover sm:object-center lg:hidden"
 //<img className="absolute inset-0 h-full w-full object-cover object-center" src="health.jpg" alt="City Health" />
 
@@ -23,7 +24,7 @@ class Home extends Component {
                                 CityScope helps you track your city's dangerous disease overview and keeps you prepared for any potential outbreaks.
                                 </p>
                             <div className="mt-4 sm:mt-6">
-                                <a href="#" className="inline-block px-5 py-3 rounded-lg shadow-lg bg-indigo-500 text-sm text-white uppercase tracking-wider font-semibold sm:text-base">Track your City</a>
+                                <a href="citytrack" className="inline-block px-5 py-3 rounded-lg shadow-lg bg-indigo-500 text-sm text-white uppercase tracking-wider font-semibold sm:text-base">City Track</a>
                             </div>
                         </div>
                     </div>
