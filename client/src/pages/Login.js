@@ -40,7 +40,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 50 }}>
         <h3>Sign in to your account</h3>
         <hr />
 

@@ -14,6 +14,9 @@ import {
 import { Link } from 'react-router-dom';
 import { logUserOut } from '../actions/auth_actions';
 
+import Logo from '../images/CityScope-1.png';
+import '../../src/tailwind.css';
+
 class NavBarComponent extends Component {
   constructor(props) {
     super(props);
@@ -78,7 +81,10 @@ class NavBarComponent extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar color="dark" dark expand="md" className="h-12">
+          <Link className="navbar-brand" to="/">
+          <img src={Logo} className="h-12" alt="website logo" />
+          </Link>
           <Link className="navbar-brand" to="/">
             CITY SCOPE
           </Link>
