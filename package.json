@@ -1,39 +1,28 @@
 {
-  "name": "project-3",
+  "name": "mern",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npm run dev --prefix server",
-    "client": "npm start --prefix client",
-    "install": "npm install --prefix server && npm install --prefix client",
-    "start": "npm start --prefix server",
-    "heroku-postbuild": "npm run build --prefix client"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ibrahem-tech/project-3.git"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node index.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ibrahem-tech/project-3/issues"
-  },
-  "homepage": "https://github.com/ibrahem-tech/project-3#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^6.2.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.24",
-    "morgan": "^1.10.0",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.16",
+    "if-env": "^1.0.4"
   }
 }
